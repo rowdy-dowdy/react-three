@@ -1,18 +1,29 @@
 import { create } from "zustand"
 
 type State = {
-  x: number,
-  y: number
+  position: {
+    x: number,
+    y: number
+  },
+  number: number
 }
 
 type Actions = {
-  setStore: (data: State) => void
+
 }
 
-const useCanvas = create<State & Actions>((set, get) => ({
-  x: 0,
-  y: 0,
-  setStore: (data) => set({...data})
+type Dispatch = {
+  dispatch: (action: (state: State) => State) => void
+}
+
+const useCanvas = create<State & Actions & Dispatch>((set, get) => ({
+  position: {
+    x: 0,
+    y: 0,
+  },
+  number: 0,
+
+  dispatch: (action) => set((state) => action(state)),
 })
 )
 

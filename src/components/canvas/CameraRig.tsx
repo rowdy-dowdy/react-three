@@ -6,7 +6,7 @@ import { Vector3, useFrame } from '@react-three/fiber';
 
 const CameraRig = () => {
   const group = useRef<THREE.Group>(null)
-  const { x, y } = useCanvas()
+  const { position } = useCanvas()
 
   useFrame((state, delta) => {
     let targetPosition: any = [0,0,2]
@@ -20,7 +20,6 @@ const CameraRig = () => {
       delta
     )
   })
-
 
   return (
     <group ref={group}>CameraRig</group>
